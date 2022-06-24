@@ -2,11 +2,13 @@
 # ASUS ROG strix RTX 3090 uses Nvidia's GeFORCE RTX 3090 ti
 
 import pandas as pd
-import pysql as ps
+import pysqldf as ps
+import numpy as np
+import os
 
-def main()
+def main():
     home_dir = os.pardir
-    data_dir = f"{home_dir}/data/unprocessed"
+    datadir = f"{home_dir}/data/unprocessed"
     output_dir = f"{home_dir}/data/processed"
     
     gameone = pd.read_csv(f'{datadir}/gameone-graphics-cards.csv')
@@ -14,10 +16,11 @@ def main()
     gpu = pd.read_csv(f"{datadir}/gpu-specs.csv")
     
     def get_available_graphics_cards():
-        gameone
-        tipidpc
+        #gameone
+        #tipidpc
 
-        gpu['product_name'] = gpu.product_name.str.split(' ')[2:]
+        gpu['product_name'] = gpu.product_name.str.split(' ').str[2:]
+        gpu.replace("",np.nan)
 
 if __name__ == '__main__':
     main() 
