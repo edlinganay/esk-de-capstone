@@ -63,7 +63,7 @@ def scrape_all_pages(d = {'item_name':[],'item_price':[],'item_url':[],'date_pos
         
         pageno+=1
         page = f"{url}&page={pageno}"
-        sleep(0.25)
+        #sleep(0.25)
     return d
 
 def main():
