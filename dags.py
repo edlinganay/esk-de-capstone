@@ -74,7 +74,7 @@ with DAG(
         src=DATA_FILE,
         dst=GCP_DATA_DEST,
         bucket=GCP_BUCKET,
-        gcp_conn_id=MY_CONN_ID,
+        #gcp_conn_id=MY_CONN_ID,
     )
 
     transfer_to_BQ = GCSToBigQueryOperator(
