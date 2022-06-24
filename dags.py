@@ -21,8 +21,8 @@ with DAG(
     )
     
     get_html_text = BashOperator(
-        task_id = 'get_gpu_specs_page'
-        bash_command = "curl \"https://techpowerup.com/gpu-specs/\" > /data/response.txt; ls /data/"
+        task_id = 'get_gpu_specs_page',
+        bash_command = 'curl "https://techpowerup.com/gpu-specs/" > /data/response.txt; ls /data/'
     )
     scrape_tipidpc = PythonOperator(
         task_id = 'scrape_tipidpc',
