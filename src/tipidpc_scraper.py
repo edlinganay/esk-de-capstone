@@ -74,7 +74,7 @@ def main():
     output_dir = f'{home_dir}/data/unprocessed'
     
     #make directories if it doesnt exist yet
-    Path("output_dir").mkdir(parents=True, exist_ok=True) 
+    Path(output_dir).mkdir(parents=True, exist_ok=True) 
     
     print('running tipidpc_scraper.py')
     d = scrape_all_pages()

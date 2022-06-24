@@ -49,19 +49,18 @@ def get_gpu_specs(url,d = {'product_name':[], 'gpu_chip':[], 'release_date':[], 
 
 
 def main():
+    """This gets executed if `gpuspecs_scraper.py` gets called."""
     home_dir = os.getcwd()
     output_dir = f"{home_dir}/data/unprocessed"
     
     #make directories if it doesnt exist yet
-    Path("output_dir").mkdir(parents=True, exist_ok=True) 
+    Path(output_dir).mkdir(parents=True, exist_ok=True) 
     
     url = 'https://www.techpowerup.com/gpu-specs/'
-
-    """This gets executed if `gpuspecs_scraper.py` gets called."""
     print("running gpuspecs_scraper.py")
     df = get_gpu_specs(url)
     df.to_csv(f"{output_dir}/gpu-specs.csv", index = False)
-
+    print(f"file at {output_dir}/gpu-specs.csv")
 if __name__ == '__main__':
     main() 
 
