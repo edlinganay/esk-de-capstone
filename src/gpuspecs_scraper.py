@@ -8,7 +8,7 @@ from pathlib import Path
 
 def try_request(url):
     try:
-        r = requests.get(url,timeout=3)
+        r = requests.get(url)
         r.raise_for_status()
         return r
     except requests.exceptions.HTTPError as errh:
@@ -27,7 +27,7 @@ def get_gpu_specs(url,d = {'product_name':[], 'gpu_chip':[], 'release_date':[], 
 
 
     response = try_request(url)
-    soup = BeautifulSoup(response.text, 'lxml')    
+    soup = BeautifulSoup(response, 'lxml')    
     soup = soup.find('table', class_='processors')
     
     #print(soup)

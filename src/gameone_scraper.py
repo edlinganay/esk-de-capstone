@@ -55,7 +55,7 @@ def scrape_all_pages(dict={"item_name":[],"item_price":[],"item_url":[],"item_av
     
     page = f"{url}?p={pageno}"
     response = try_request(page)
-    soup = BeautifulSoup(response.text, 'lxml')
+    soup = BeautifulSoup(response, 'lxml')
     soup = soup.find('ol')
     first_item = soup.find(class_="product name product-item-name").text.strip()
     

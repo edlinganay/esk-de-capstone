@@ -10,7 +10,7 @@ from pathlib import Path
 
 def try_request(url):
     try:
-        r = requests.get(url,timeout=3)
+        r = requests.get(url)
         r.raise_for_status()
         return r
     except requests.exceptions.HTTPError as errh:
@@ -51,7 +51,7 @@ def scrape_all_pages(d = {'item_name':[],'item_price':[],'item_url':[],'date_pos
     while True:
         
         response = try_request(page)
-        soup = BeautifulSoup(response.text, 'lxml')
+        soup = BeautifulSoup(response, 'lxml')
         search_results = soup.find("ul",id="item-search-results")
 
         if search_results != None:
