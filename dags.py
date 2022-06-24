@@ -22,12 +22,12 @@ with DAG(
     
     scrape_tipidpc = PythonOperator(
         task_id = 'scrape_tipidpc',
-        python_callable = tipidpc_scraper.main(),
+        python_callable = tipidpc_scraper.main,
     )
 
     scrape_gameone = PythonOperator(
         task_id = 'scrape_gameone',
-        python_callable = gameone_scraper.main()
+        python_callable = gameone_scraper.main,
     )
 
     start = DummyOperator(task_id = 'start_pipeline')
