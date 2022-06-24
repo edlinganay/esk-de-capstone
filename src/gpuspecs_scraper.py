@@ -28,7 +28,6 @@ def get_gpu_specs(url,d = {'product_name':[], 'gpu_chip':[], 'release_date':[], 
 
 
     response = try_request(url)
-    print(response.text)
     soup = BeautifulSoup(response.text, 'lxml')    
     soup = soup.find('table', class_='processors')
     
@@ -57,7 +56,7 @@ def main():
     #make directories if it doesnt exist yet
     Path(output_dir).mkdir(parents=True, exist_ok=True) 
     
-    url = 'https://www.techpowerup.com/gpu-specs/'
+    url = 'http://www.techpowerup.com/gpu-specs/'
     print("running gpuspecs_scraper.py")
     df = get_gpu_specs(url)
     df.to_csv(f"{output_dir}/gpu-specs.csv", index = False)
