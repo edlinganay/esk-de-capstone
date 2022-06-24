@@ -74,7 +74,7 @@ def scrape_all_pages(dict={"item_name":[],"item_price":[],"item_url":[],"item_av
         get_data(soup,dict)
         pageno+=1
         page = f"{url}?p={pageno}"
-        sleep(randint(2,6))
+        sleep(0.25)
 
     return dict
 
