@@ -22,7 +22,7 @@ with DAG(
     
     get_html_text = BashOperator(
         task_id = 'get_gpu_specs_page',
-        bash_command = 'curl "https://techpowerup.com/gpu-specs/" > /data/response.txt; ls /data/'
+        bash_command = 'curl "https://techpowerup.com/gpu-specs/" > /opt/airflow/dags/data/response.txt; ls /opt/airflow/dags/data/'
     )
     scrape_tipidpc = PythonOperator(
         task_id = 'scrape_tipidpc',
