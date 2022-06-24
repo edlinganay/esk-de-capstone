@@ -104,7 +104,7 @@ with DAG(
         
         fail_flag = 0
         df1['item_price'] = df1.item_price.str.replace("₱","").str.replace(",","").astype(float)
-        df2['item_price'] = df1.item_price.str.replace("P","").str.replace(",","").astype(float)
+        df2['item_price'] = df2.item_price.str.replace("P","").str.replace(",","").astype(float)
 
         if ((df1.item_price < 0).any() == True) or ((df1.item_price < 0).any()) == True:
             fail_flag = 1
@@ -126,7 +126,7 @@ with DAG(
         df1 = pd.read_csv(f'{RAW_DATA_DIR}/gameone-graphics-cards.csv')
         df2 = pd.read_csv(f'{RAW_DATA_DIR}/tipidpc-graphics-cards.csv')
         df1['item_price'] = df1.item_price.str.replace("₱","").str.replace(",","").astype(float)
-        df2['item_price'] = df1.item_price.str.replace("P","").str.replace(",","").astype(float)
+        df2['item_price'] = df2.item_price.str.replace("P","").str.replace(",","").astype(float)
 
         df1 = df1.replace('', np.nan)
         df1.dropna(inplace=True)        
