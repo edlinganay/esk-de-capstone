@@ -32,6 +32,6 @@ with DAG(
 
     start = DummyOperator(task_id = 'start_pipeline')
     end = DummyOperator(task_id = 'end')
-    start >> [scrape_tipidpc,scrape_gameone] >> end
-    #start >> [scrape_gpuspecs, scrape_tipidpc, scrape_gameone] >> end
+    #start >> [scrape_tipidpc,scrape_gameone] >> end
+    start >> [scrape_gpuspecs, scrape_tipidpc, scrape_gameone] >> end
 
