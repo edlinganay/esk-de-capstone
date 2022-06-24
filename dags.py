@@ -3,7 +3,7 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.operators.python import BranchPythonOperator
 from airflow.operators.dummy import DummyOperator
 from airflow.utils.trigger_rule import TriggerRule
-
+from airflow.hooks.base import BaseHook
 from airflow.providers.google.cloud.operators.bigquery import (
     BigQueryCreateEmptyDatasetOperator,
     BigQueryDeleteDatasetOperator,
@@ -38,7 +38,7 @@ BQ_DATASET = "great_expectations_bigquery_example"
 BQ_TABLE = "available-gpu"
 GCP_BUCKET = "capstone-gpu-data"
 GCP_DATA_DEST = "gpu_available_today/available_gpu.csv"
-MY_CONN_ID = 'GCP_CONNECTION_ID'
+MY_CONN_ID = BaseHook.get_conn('GCP_CONNECTION_ID')
 
 with DAG(
     "gpu-pipeline",
