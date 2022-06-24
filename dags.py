@@ -1,7 +1,7 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.operators.dummy import DummyOperator
-
+from airflow.operators.bash_operator import BashOperator
 import src.gameone_scraper as gameone_scraper
 import src.tipidpc_scraper as tipidpc_scraper
 import src.gpuspecs_scraper as gpuspecs_scraper
