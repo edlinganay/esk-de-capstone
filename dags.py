@@ -15,23 +15,23 @@ with DAG(
     catchup=False,
 ) as dag:
 
-    scrape_gpuspecs = PythonOperator(
-        task_id = 'scrape_gpuspecs',
-        python_callable = gpuspecs_scraper.main(),
-    )
+    #scrape_gpuspecs = PythonOperator(
+    #    task_id = 'scrape_gpuspecs',
+    #    python_callable = gpuspecs_scraper.main(),
+    #)
     
-    scrape_tipidpc = PythonOperator(
-        task_id = 'scrape_tipidpc',
-        python_callable = tipidpc_scraper.main(),
-    )
+    #scrape_tipidpc = PythonOperator(
+    #    task_id = 'scrape_tipidpc',
+    #    python_callable = tipidpc_scraper.main(),
+    #)
 
-    scrape_gameone = PythonOperator(
-        task_id = 'scrape_gameone',
-        python_callable = gameone_scraper.main()
-    )
+    #scrape_gameone = PythonOperator(
+    #    task_id = 'scrape_gameone',
+    #    python_callable = gameone_scraper.main()
+    #)
 
     start = DummyOperator(task_id = 'start_pipeline')
     end = DummyOperator(task_id = 'end')
-    #start >> end
-    start >> [scrape_gpuspecs, scrape_tipidpc, scrape_gameone] >> end
+    start >> end
+    #start >> [scrape_gpuspecs, scrape_tipidpc, scrape_gameone] >> end
 
