@@ -51,7 +51,7 @@ def scrape_all_pages(d = {'item_name':[],'item_price':[],'item_url':[],'date_pos
     while True:
         
         response = try_request(page)
-        soup = BeautifulSoup(response, 'lxml')
+        soup = BeautifulSoup(response.text, 'lxml')
         search_results = soup.find("ul",id="item-search-results")
 
         if search_results != None:

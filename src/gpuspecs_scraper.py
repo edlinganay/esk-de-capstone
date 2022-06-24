@@ -27,7 +27,7 @@ def get_gpu_specs(url,d = {'product_name':[], 'gpu_chip':[], 'release_date':[], 
 
 
     response = try_request(url)
-    soup = BeautifulSoup(response, 'lxml')    
+    soup = BeautifulSoup(response.text, 'lxml')    
     soup = soup.find('table', class_='processors')
     
     #print(soup)
