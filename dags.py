@@ -5,7 +5,7 @@ from airflow.operators.dummy import DummyOperator
 import src.gameone_scraper as gameone_scraper
 import src.tipidpc_scraper as tipidpc_scraper
 import src.gpuspecs_scraper as gpuspecs_scraper
-import datetime
+from datetime import date, datetime
 
 with DAG(
     "gpu-pipeline",
