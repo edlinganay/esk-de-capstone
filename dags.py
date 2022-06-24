@@ -168,7 +168,9 @@ with DAG(
     validation_fail = DummyOperator(task_id = 'validation_fail')
     validation_success = DummyOperator(task_id = 'validation_success')
     
-    start >> [scrape_tipidpc, scrape_gameone] >> validation_step >> [validation_success, validation_fail]
+
+    #start >> [scrape_tipidpc, scrape_gameone] >> validation_step
+    validation_step >> [validation_success, validation_fail]
     validation_success >> transform_data
     validation_fail >> clean_data >> transform_data
     transform_data >> upload_to_gcs >> transfer_to_BQ >> delete_local_data >> end
