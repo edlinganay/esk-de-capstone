@@ -1,6 +1,5 @@
-# todo: add dags task
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.operators.python_operator import PythonOperator
 from airflow.operators.dummy import DummyOperator
 
 import src.gameone_scraper as gameone_scraper
@@ -11,7 +10,7 @@ import datetime
 with DAG(
     "gpu-pipeline",
     description="ETL dag for gpu data to bigquery",
-    schedule_interval='@once', #check run
+    schedule_interval=None,
     start_date=datetime(2021, 1, 1),
     catchup=False,
 ) as dag:
@@ -33,6 +32,6 @@ with DAG(
 
     start = DummyOperator(task_id = 'start_pipeline')
     end = DummyOperator(task_id = 'end')
-
+    #start >> end
     start >> [scrape_gpuspecs, scrape_tipidpc, scrape_gameone] >> end
 
