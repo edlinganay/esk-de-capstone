@@ -38,7 +38,7 @@ BQ_DATASET = "great_expectations_bigquery_example"
 BQ_TABLE = "available-gpu"
 GCP_BUCKET = "capstone-gpu-data"
 GCP_DATA_DEST = "gpu_available_today/available_gpu.csv"
-MY_CONN_ID = 'google-cloud-service-account'
+MY_CONN_ID = 'GCP_CONNECTION_ID'
 
 with DAG(
     "gpu-pipeline",
@@ -74,15 +74,15 @@ with DAG(
         src=DATA_FILE,
         dst=GCP_DATA_DEST,
         bucket=GCP_BUCKET,
-        #gcp_conn_id=MY_CONN_ID,
+        gcp_conn_id=MY_CONN_ID,
     )
 
     transfer_to_BQ = GCSToBigQueryOperator(
         task_id="transfer_to_BQ",
         bucket=GCP_BUCKET,
         source_objects=[GCP_DATA_DEST],
-        #bigquery_conn_id= MY_CONN_ID,
-        #google_cloud_storage_conn_id= MY_CONN_ID,
+        bigquery_conn_id= MY_CONN_ID,
+        google_cloud_storage_conn_id= MY_CONN_ID,
         skip_leading_rows=1,
         destination_project_dataset_table="{}.{}".format(BQ_DATASET, BQ_TABLE),
         schema_fields=[
