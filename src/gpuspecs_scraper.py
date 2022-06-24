@@ -20,8 +20,7 @@ def try_request(url):
     except requests.exceptions.RequestException as err:
         print ("Oops: Unknown Error",err)
 
-def get_gpu_specs(url,d = {'product_name':[], 'gpu_chip':[], 'release_date':[], 'bus':[]
-            , 'memory':[], 'gpu_clock':[], 'memory_clock':[], 'shaders_tmus_rops':[]}):
+def get_gpu_specs(url,d = {'product_name':[], 'gpu_chip':[], 'release_date':[], 'bus':[], 'memory':[], 'gpu_clock':[], 'memory_clock':[], 'shaders_tmus_rops':[]}):
     '''
     d dict that default instantiates dict with product name, gpu chip, rel date, bus, memory, gpu clock, mem clock, and shader/TMUs/ROPs
     '''
