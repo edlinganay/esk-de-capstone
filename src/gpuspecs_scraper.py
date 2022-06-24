@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 import lxml
 import os
+from pathlib import Path
 
 def try_request(url):
     try:
@@ -48,8 +49,12 @@ def get_gpu_specs(url,d = {'product_name':[], 'gpu_chip':[], 'release_date':[], 
 
 
 def main():
-    home_dir = os.pardir
+    home_dir = os.getcwd()
     output_dir = f"{home_dir}/data/unprocessed"
+    
+    #make directories if it doesnt exist yet
+    Path("output_dir").mkdir(parents=True, exist_ok=True) 
+    
     url = 'https://www.techpowerup.com/gpu-specs/'
 
     """This gets executed if `gpuspecs_scraper.py` gets called."""

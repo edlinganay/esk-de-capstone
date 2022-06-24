@@ -6,16 +6,7 @@ import lxml
 from random import randint
 from time import sleep
 import os
-
-# HOME_DIR = os.pardir
-# OUTPUT_DIR = f'{HOME_DIR}/data/unprocessed'
-# URL = 'https://tipidpc.com/catalog.php?sec=s&cat=4' 
-# domain = 'https://tipidpc.com/'
-
-#response = requests.get(URL)
-#soup = BeautifulSoup(response.text, 'lxml')
-#print(soup.prettify())
-
+from pathlib import Path
 
 def try_request(url):
     try:
@@ -79,8 +70,11 @@ def main():
     """This gets executed if `tipidpc_scraper.py` gets called."""
     
     
-    home_dir = os.pardir
+    home_dir = os.getcwd()
     output_dir = f'{home_dir}/data/unprocessed'
+    
+    #make directories if it doesnt exist yet
+    Path("output_dir").mkdir(parents=True, exist_ok=True) 
     
     print('running tipidpc_scraper.py')
     d = scrape_all_pages()

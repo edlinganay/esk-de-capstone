@@ -6,9 +6,7 @@ from random import randint
 from time import sleep
 import os
 from datetime import date
-
-
-
+from pathlib import Path
 
 
 def try_request(url):
@@ -83,8 +81,11 @@ def scrape_all_pages(dict={"item_name":[],"item_price":[],"item_url":[],"item_av
 def main():
     """This gets executed if `gameone_scraper.py` gets called."""
     
-    home_dir = os.pardir
+    home_dir = os.getcwd()
     output_dir = f'{home_dir}/data/unprocessed'
+    #make directories if it doesnt exist yet
+    Path("output_dir").mkdir(parents=True, exist_ok=True) 
+
     today = date.today().strftime("%Y-%m-%d")
 
     print("running gameone_scraper.py")
