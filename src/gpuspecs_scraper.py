@@ -7,8 +7,9 @@ import os
 from pathlib import Path
 
 def try_request(url):
+    headers = {'user-agent': 'your-own-user-agent/0.0.1'}
     try:
-        r = requests.get(url)
+        r = requests.get(url,headers = headers)
         r.raise_for_status()
         return r
     except requests.exceptions.HTTPError as errh:
@@ -27,6 +28,7 @@ def get_gpu_specs(url,d = {'product_name':[], 'gpu_chip':[], 'release_date':[], 
 
 
     response = try_request(url)
+    print(response.text)
     soup = BeautifulSoup(response.text, 'lxml')    
     soup = soup.find('table', class_='processors')
     
