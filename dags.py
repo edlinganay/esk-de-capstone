@@ -1,10 +1,8 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python import BranchPythonOperator
 from airflow.operators.dummy import DummyOperator
-from airflow.operators.bash_operator import BashOperator
-<<<<<<< HEAD
 from airflow.utils.trigger_rule import TriggerRule
-from airflow.models import Variable
 
 from airflow.providers.google.cloud.operators.bigquery import (
     BigQueryCreateEmptyDatasetOperator,
@@ -19,8 +17,6 @@ from airflow.providers.google.cloud.transfers.gcs_to_bigquery import (
 )
 
 
-=======
->>>>>>> b93b7a917beeba1fd317ab578d96704847792dc9
 import src.gameone_scraper as gameone_scraper
 import src.tipidpc_scraper as tipidpc_scraper
 import src.gpuspecs_scraper as gpuspecs_scraper
@@ -57,10 +53,6 @@ with DAG(
         python_callable = gpuspecs_scraper.main,
     )
     
-    get_html_text = BashOperator(
-        task_id = 'get_gpu_specs_page',
-        bash_command = 'curl "http://techpowerup.com/gpu-specs/" > /opt/airflow/dags/data/response.txt; cat /opt/airflow/dags/data/response.txt'
-    )
     scrape_tipidpc = PythonOperator(
         task_id = 'scrape_tipidpc',
         python_callable = tipidpc_scraper.main,
@@ -107,8 +99,8 @@ with DAG(
     )
 
     def validate(ds=None, **kwargs):
-        df1 = pd.to_csv(f'{RAW_DATA_DIR}/gameone-graphics-cards.csv')
-        df2 = pd.to_csv(f'{RAW_DATA_DIR}/tipidpc-graphics-cards.csv')
+        df1 = pd.read_csv(f'{RAW_DATA_DIR}/gameone-graphics-cards.csv')
+        df2 = pd.read_csv(f'{RAW_DATA_DIR}/tipidpc-graphics-cards.csv')
         
         fail_flag = 0
         df1['item_price'] = df1.item_price.str.replace("₱","").str.replace(",","").astype(float)
@@ -163,18 +155,16 @@ with DAG(
 
     clean_data = PythonOperator(
         task_id = 'clean',
-        python_callable=clean_data
+        python_callable=clean_data,
     )
 
     delete_local_data = PythonOperator(
-        task_id = 'delete_local_data'
-        python_callable= delete_files
-
+        task_id = 'delete_local_data',
+        python_callable= delete_files,
     )
 
     start = DummyOperator(task_id = 'start_pipeline')
     end = DummyOperator(task_id = 'end')
-<<<<<<< HEAD
     validation_fail = DummyOperator(task_id = 'validation_fail')
     validation_success = DummyOperator(task_id = 'validation_success')
     
@@ -182,8 +172,3 @@ with DAG(
     validation_success >> transform_data
     validation_fail >> clean_data >> transform_data
     transform_data >> upload_to_gcs >> transfer_to_BQ >> delete_local_data
-=======
-    #start >> [scrape_tipidpc,scrape_gameone] >> end
-    start >> [get_html_text, scrape_tipidpc, scrape_gameone] >> end
-
->>>>>>> b93b7a917beeba1fd317ab578d96704847792dc9
