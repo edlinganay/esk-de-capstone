@@ -6,13 +6,13 @@ from airflow.operators.dummy import DummyOperator
 import src.gameone_scraper as gameone_scraper
 import src.tipidpc_scraper as tipidpc_scraper
 import src.gpuspecs_scraper as gpuspecs_scraper
-
+import datetime
 
 with DAG(
     "gpu-pipeline",
     description="ETL dag for gpu data to bigquery",
     schedule_interval='@once', #check run
-    start_date=datetime(2022, 6, 24),
+    start_date=datetime(2021, 1, 1),
     catchup=False,
 ) as dag:
 
@@ -31,14 +31,8 @@ with DAG(
         python_callable = gameone_scraper.main()
     )
 
+    start = DummyOperator(task_id = 'start_pipeline')
+    end = DummyOperator(task_id = 'end')
 
-    start = DummyOperator(
-        task_id = 'start_pipeline',
-    )
-
-    end = DummyOperator(
-        task_id = 'end',
-    )
-
-start >> [scrape_gpuspecs, scrape_tipidpc, scrape_gameone] >> end
+    start >> [scrape_gpuspecs, scrape_tipidpc, scrape_gameone] >> end
 
