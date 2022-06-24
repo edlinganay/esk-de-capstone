@@ -15,10 +15,10 @@ with DAG(
     catchup=False,
 ) as dag:
 
-    #scrape_gpuspecs = PythonOperator(
-    #    task_id = 'scrape_gpuspecs',
-    #    python_callable = gpuspecs_scraper.main(),
-    #)
+    scrape_gpuspecs = PythonOperator(
+        task_id = 'scrape_gpuspecs',
+        python_callable = gpuspecs_scraper.main,
+    )
     
     scrape_tipidpc = PythonOperator(
         task_id = 'scrape_tipidpc',
