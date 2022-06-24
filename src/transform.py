@@ -15,20 +15,21 @@ def main():
     #make directories if it doesnt exist yet
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
-    gameone = pd.read_csv(f'{datadir}/gameone-graphics-cards.csv')
-    tipidpc = pd.read_csv(f"{datadir}/tipidpc-graphics-cards.csv")
-    gpu = pd.read_csv(f"{datadir}/gpu-specs.csv")
+
+    
     
 
     def transform_gpu_specs():
-        
+        gpu = pd.read_csv(f"{datadir}/gpu-specs.csv")
         gpu['prodkey'] = gpu.product_name.str.split(' ').str[2:]
         gpu.replace("",np.nan)
         gpu['release_date'] = pd.to_datetime(gpu.release_date)
         gpu.to_csv(f'{output_dir}/gpu-specs.csv')
         print(f'File transformed. Available at: {output_dir}/gpu-specs.csv',index=False)
 
-    def get_available_data(tipidpc, gameone):
+    def get_available_data():
+        gameone = pd.read_csv(f'{datadir}/gameone-graphics-cards.csv')
+        tipidpc = pd.read_csv(f"{datadir}/tipidpc-graphics-cards.csv")
         today = date.today().strftime("%Y-%m-%d")
 
         tipidpc['item_price'] = tipidpc['item_price'].str.replace("P","").astype(float)
@@ -63,7 +64,7 @@ def main():
         print(f'Files transformed. Find at {output_dir}/available_gpu.csv')
 
     #transform_gpu_specs()
-    get_available_data(tipidpc,gameone)
+    get_available_data()
 
 if __name__ == '__main__':
     main() 
