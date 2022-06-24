@@ -62,7 +62,7 @@ def main():
         available_gpu.to_csv(f'{output_dir}/available_gpu.csv',index=False)
         print(f'Files transformed. Find at {output_dir}/available_gpu.csv')
 
-    transform_gpu_specs()
+    #transform_gpu_specs()
     get_available_data(tipidpc,gameone)
 
 if __name__ == '__main__':
