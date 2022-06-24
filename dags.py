@@ -110,11 +110,11 @@ with DAG(
             fail_flag = 1
             print('found negative price values')
         
-        if (df1['item_name'].str.strip() == "") or (df1['item_name'] is np.nan):
+        if (df1['item_name'].str.strip() == "".any() or (df1['item_name'] is np.nan).any():
             fail_flag = 1
             print('found empty item names')
         
-        if (df2['item_name'].str.strip() == "") or (df2['item_name'] is np.nan):
+        if (df2['item_name'].str.strip() == "").any() or (df2['item_name'] is np.nan).any():
             fail_flag = 1
             print('found empty item names')
 
