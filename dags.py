@@ -119,8 +119,8 @@ with DAG(
             print('found empty item names')
 
         if fail_flag == 0:
-            return validation_success
-        else: return validation_fail
+            return 'validation_success'
+        else: return 'validation_fail'
 
     def clean_data(ds=None, **kwargs):
         df1 = pd.read_csv(f'{RAW_DATA_DIR}/gameone-graphics-cards.csv')
@@ -154,7 +154,7 @@ with DAG(
     )
 
     clean_data = PythonOperator(
-        task_id = 'clean',
+        task_id = 'clean_data',
         python_callable=clean_data,
     )
 
