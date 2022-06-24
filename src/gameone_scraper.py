@@ -93,7 +93,7 @@ def main():
     df = pd.DataFrame(d)
     df['ao_date'] = today 
     df.to_csv(f"{output_dir}/gameone-graphics-cards.csv", index = False)
-
+    print(f"file at: {output_dir}/gameone-graphics-cards.csv")
 
 if __name__ == '__main__':
     main() 

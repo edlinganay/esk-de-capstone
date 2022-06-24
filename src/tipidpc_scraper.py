@@ -81,6 +81,6 @@ def main():
     
     df = pd.DataFrame(d)
     df.to_csv(f'{output_dir}/tipidpc-graphics-cards.csv',index = False)
-
+    print(f'file at: {output_dir}/tipidpc-graphics-cards.csv')
 if __name__ == '__main__':
     main()

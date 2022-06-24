@@ -60,7 +60,7 @@ def main():
     print("running gpuspecs_scraper.py")
     df = get_gpu_specs(url)
     df.to_csv(f"{output_dir}/gpu-specs.csv", index = False)
-    print(f"file at {output_dir}/gpu-specs.csv")
+    print(f"file at: {output_dir}/gpu-specs.csv")
 if __name__ == '__main__':
     main() 
 
