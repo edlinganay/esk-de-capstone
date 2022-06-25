@@ -135,8 +135,8 @@ with DAG(
         df1 = df1[df1['item_price']<0]
         df2 = df2[df2['item_price']<0]
 
-        df1 = pd.to_csv(f'{RAW_DATA_DIR}/gameone-graphics-cards.csv')
-        df2 = pd.to_csv(f'{RAW_DATA_DIR}/tipidpc-graphics-cards.csv')
+        df1.to_csv(f'{RAW_DATA_DIR}/gameone-graphics-cards.csv')
+        df2.to_csv(f'{RAW_DATA_DIR}/tipidpc-graphics-cards.csv')
 
     def delete_files(ds=None, **kwargs):
         for f in os.listdir(DATA_DIR):
