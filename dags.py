@@ -143,7 +143,7 @@ with DAG(
             os.remove(os.path.join(DATA_DIR,f))
         
         for f in os.listdir(RAW_DATA_DIR):
-            os.remove(os.path.join(DATA_DIR,f))
+            os.remove(os.path.join(RAW_DATA_DIR,f))
 
         print(f"files in {DATA_DIR} and {RAW_DATA_DIR} deleted")
 
