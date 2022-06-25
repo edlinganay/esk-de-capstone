@@ -31,7 +31,7 @@ import pandas as pd
 
 
 BASE_PATH = os.getcwd()
-DATA_DIR = f"{BASE_PATH}data/processed"
+DATA_DIR = f"{BASE_PATH}/data/processed"
 RAW_DATA_DIR = f"{BASE_PATH}/data/unprocessed"
 DATA_FILE = f"{DATA_DIR}/available_gpu.csv"
 BQ_DATASET = "great_expectations_bigquery_example"
@@ -168,7 +168,7 @@ with DAG(
     validation_success = DummyOperator(task_id = 'validation_success')
     
 
-    #start >> [scrape_tipidpc, scrape_gameone] >> validation_step
+    start >> [scrape_tipidpc, scrape_gameone] >> validation_step
     validation_step >> [validation_success, validation_fail]
     validation_success >> transform_data
     validation_fail >> clean_data >> transform_data
