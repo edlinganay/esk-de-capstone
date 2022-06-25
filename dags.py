@@ -38,7 +38,7 @@ BQ_DATASET = "great_expectations_bigquery_example"
 BQ_TABLE = "available-gpu"
 GCP_BUCKET = "capstone-gpu-data"
 GCP_DATA_DEST = "gpu_available_today/available_gpu.csv"
-MY_CONN_ID = BaseHook.get_conn('GCP_CONNECTION_ID')
+MY_CONN_ID = BaseHook.get_connection('GCP_CONNECTION_ID')
 
 with DAG(
     "gpu-pipeline",
