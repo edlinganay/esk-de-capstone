@@ -29,3 +29,8 @@ Capstone is about creating an Airflow DAG pipeline that automatically updates da
         ]
 ```
 item_price: FLOAT > 0
+
+## DATA SOURCES
+* https://tipidpc.com/catalog.php?sec=s&cat=4
+* https://gameone.ph/computer-parts/graphics-card.html
+* https://www.techpowerup.com/gpu-specs/
