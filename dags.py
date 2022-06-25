@@ -38,7 +38,6 @@ BQ_DATASET = "great_expectations_bigquery_example"
 BQ_TABLE = "available-gpu"
 GCP_BUCKET = "capstone-gpu-data"
 GCP_DATA_DEST = "gpu_available_today/available_gpu.csv"
-MY_CONN_ID = BaseHook.get_connection('GCP_CONNECTION_ID')
 
 with DAG(
     "gpu-pipeline",
@@ -74,7 +73,7 @@ with DAG(
         src=DATA_FILE,
         dst=GCP_DATA_DEST,
         bucket=GCP_BUCKET,
-        gcp_conn_id=MY_CONN_ID,
+        #gcp_conn_id=MY_CONN_ID,
     )
 
     transfer_to_BQ = GCSToBigQueryOperator(
