@@ -42,8 +42,8 @@ GCP_DATA_DEST = "gpu_available_today/available_gpu.csv"
 with DAG(
     "gpu-pipeline",
     description="ETL dag for gpu data to bigquery",
-    schedule_interval=None,
-    start_date=datetime(2021, 1, 1),
+    schedule_interval='0 19 * * *',
+    start_date=datetime(2022, 6, 24),
     catchup=False,
 ) as dag:
 
@@ -152,7 +152,7 @@ with DAG(
         python_callable = validate,
     )
 
-    clean_data = PythonOperator(
+    clean_task = PythonOperator(
         task_id = 'clean_data',
         python_callable=clean_data,
     )
@@ -171,6 +171,6 @@ with DAG(
     start >> [scrape_tipidpc, scrape_gameone] >> validation_step
     validation_step >> [validation_success, validation_fail]
     validation_success >> transform_data
-    validation_fail >> clean_data >> transform_data
+    validation_fail >> clean_task >> transform_data
     transform_data >> upload_to_gcs >> transfer_to_BQ
     transfer_to_BQ >> delete_local_data >> end
