@@ -12,6 +12,9 @@ Capstone is about creating an Airflow DAG pipeline that automatically updates da
 4. run ```docker compose up```
 5. go to your airflow webserver on localhost:8080
 
+## SCHEDULE
+Runs daily at 7 PM
+
 ## SOME ISSUES
 * make sure to set up a GCP Cloud connection on Airflow with name 'google_cloud_default'
 * when running in a VM use nginx to redirect localhost:8080 to VM external IP
