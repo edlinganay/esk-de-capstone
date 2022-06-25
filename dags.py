@@ -81,8 +81,8 @@ with DAG(
         task_id="transfer_to_BQ",
         bucket=GCP_BUCKET,
         source_objects=[GCP_DATA_DEST],
-        bigquery_conn_id= MY_CONN_ID,
-        google_cloud_storage_conn_id= MY_CONN_ID,
+        #bigquery_conn_id= MY_CONN_ID,
+        #google_cloud_storage_conn_id= MY_CONN_ID,
         skip_leading_rows=1,
         destination_project_dataset_table="{}.{}".format(BQ_DATASET, BQ_TABLE),
         schema_fields=[
