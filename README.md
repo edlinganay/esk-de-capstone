@@ -16,3 +16,16 @@ Capstone is about creating an Airflow DAG pipeline that automatically updates da
 * make sure to set up a GCP Cloud connection on Airflow with name 'google_cloud_default'
 * when running in a VM use nginx to redirect localhost:8080 to VM external IP
 * gpusecs_scraper fails when running on VM due to refused connection
+* There is no task to create BQ dataset.  Before running DAG, on BQ create dataset gpu-data
+
+## OUTPUT DATA SCHEMA
+```
+[
+    {"name": "item_name", "type": "STRING", "mode": "REQUIRED"},
+    {"name": "item_price", "type": "FLOAT", "mode": "NULLABLE"},
+    {"name": "url", "type": "STRING", "mode": "NULLABLE"},
+    {"name": "date_posted", "type": "DATETIME", "mode": "NULLABLE"},
+    {"name": "ao_date", "type": "DATE", "mode": "NULLABLE"},
+        ]
+```
+item_price: FLOAT > 0
