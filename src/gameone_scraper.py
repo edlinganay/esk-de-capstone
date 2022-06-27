@@ -32,7 +32,7 @@ def get_data(sr,dict):
         item_details = item.find(class_="product details product-item-details")
         name = item_details.find(class_="product name product-item-name").text.strip()
         url = item_details.find(class_="product-item-link").get('href')
-        price = item_details.find("span", class_="price").text.strip()
+        price = item_details.find_all("span", class_="price")[-1].text.strip()
         oos_check = item_details.find(class_="stock unavailable")
         if oos_check is None or oos_check == []:
             availability = 'Available'
