@@ -19,7 +19,7 @@ Runs daily at 7 PM
 * make sure to set up a GCP Cloud connection on Airflow with name 'google_cloud_default'
 * when running in a VM use nginx to redirect localhost:8080 to VM external IP
 * gpusecs_scraper fails when running on VM due to refused connection
-* There is no task to create BQ dataset.  Before running DAG, on BQ create dataset gpu-data
+* There is no task to create BQ dataset.  Before running DAG, ensure that BQ has a dataset named `gpu-data`
 
 ## OUTPUT DATA SCHEMA
 ```
